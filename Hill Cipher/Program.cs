@@ -11,22 +11,26 @@ namespace Hill_Cipher
     {
         public static void Main(String[] args)
         {
-            int[,] key = { { 11, 8 },
-                           { 3, 7 } };
-
-            string message = "ZLBT";
-
-            HillCipher.Decrypt(message, key);
 
 
-            //Console.WriteLine("Hill Cipher");
+
+            Console.WriteLine("Hill Cipher");
             //int[,] key = { { 18, 9 },
             //               { 27, 36 } };
 
             //string message = "EITHERYOUVALUETHETHINGSORYOULOSTVALUE";
 
-            //Console.WriteLine("Plain Text: "+ message);
+            //Console.WriteLine("Plain Text: " + message);
             //HillCipher.Encrypt(message, key);
+
+
+            int[,] key = { { 7, 8 },
+                           { 11, 11 } };
+
+            string message = "APADJTFWLFJ";
+            Console.WriteLine("Cipher Text: " + message);
+            HillCipher.Decrypt(message, key);
+
             Console.ReadKey();
         }
     }

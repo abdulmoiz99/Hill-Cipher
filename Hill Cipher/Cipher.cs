@@ -43,8 +43,7 @@ namespace Hill_Cipher
                 if ((a * x) % 26 == 1)
                     return x;
             }
-
-            throw new System.Exception("No multiplicative inverse found!");
+            return a;
         }
     }
 }

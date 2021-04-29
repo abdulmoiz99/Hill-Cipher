@@ -13,6 +13,8 @@ namespace Hill_Cipher
             {
                 Console.WriteLine("Decryption is not possible!");
             }
+            det = getPositiveValue(det);
+
             det = Cipher.MultiplicativeInverse(det);
 
             // Take adjoint
@@ -28,17 +30,18 @@ namespace Hill_Cipher
             {
                 for (int j = 0; j < 2; j++)
                 {
-                    key[i, j] = key[i, j] / det;
+                    key[i, j] = key[i, j] * det;
 
                     if (key[i, j] < 0)
                     {
                         key[i, j] = getPositiveValue(key[i, j]);
                     }
+                    key[i, j] = key[i, j] % 26;
                 }
             }
 
             //Decrytion 
-            string plainText = "";
+            string cipherText = "";
             if (message.Length % 2 != 0) message += "X";
 
             for (int i = 0; i < message.Length; i = i + 2)
@@ -51,10 +54,10 @@ namespace Hill_Cipher
                 int c1 = (key[0, 0] * a1 + key[0, 1] * a2) % 26;
                 int c2 = (key[1, 0] * a1 + key[1, 1] * a2) % 26;
 
-                plainText += Cipher.GetAlphabetKey(c1);
-                plainText += Cipher.GetAlphabetKey(c2);
+                cipherText += Cipher.GetAlphabetKey(c1);
+                cipherText += Cipher.GetAlphabetKey(c2);
             }
-            Console.WriteLine(plainText);
+            Console.WriteLine("Decrypted Text: " +cipherText);
         }
         public static void Encrypt(string message, int[,] key)
         {
